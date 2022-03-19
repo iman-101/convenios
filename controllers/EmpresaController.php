@@ -22,16 +22,16 @@ class EmpresaController{
     
     public function show(int $id=0){
         if(!$id)
-            throw new Exception("No se indicó el libro .");
+            throw new Exception("No se indico el empresa .");
             
             $empresa=Empresa::getById($id);
             
             
             if(!$empresa)
                 throw new Exception("No se ha encontrado el socio $id .");
-                
-               $convenios =$empresa->getconvenios();
-               $mensaje="Guardado  correctamente.";
+                $emp=new Empresa();
+              $convenios =$emp->getconvenios($id);
+               
                 include '../view/empresa/detalles.php';
                 
     }
@@ -81,7 +81,7 @@ class EmpresaController{
            
             try{
                 $empresa->guardar();
-                
+                $GLOBALS['mensaje']="Guardado correctamente";
                 $this->show($id);
             }catch(Exception $e){
                 

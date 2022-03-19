@@ -33,7 +33,7 @@
            <p class='exito'><?=$mensaje?></p>
          </div>
          <?php }?>
-<h2>Detalles del empresa </h2>
+<h2>Detalles del convenio </h2>
 
 
 

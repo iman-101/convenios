@@ -31,7 +31,8 @@
      
    <h2 class="text-center">Lista de convenios</h2>
    
- 
+ <?php  if(!empty($convenios) ){
+ ?>
       <table border='1' class="table table-striped">
          <thead >
               <tr>
@@ -50,6 +51,7 @@
        </tbody>
       
       <?php 
+      
       foreach($convenios as $al){
           
           echo "<tr>";
@@ -72,10 +74,15 @@
          
             echo "</td>";
             echo "</tr>";
-      }
+        }
+     
       ?>
       </tbody>
  </table>
+ <?php }else{
+     echo "<h2>No se encuentra convenios</h2>";
+     
+ }?>
 </div>
   </body>
   </html> 

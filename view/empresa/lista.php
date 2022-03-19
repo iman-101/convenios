@@ -28,21 +28,29 @@
     <div class="container">
    
       
+       <?php if(!empty($GLOBALS['mensaje'])){?>
      
-   <h2 class="text-center">Lista de alumnos</h2>
+         <div class="alert alert-success"> 
+           <h2>Exito en la operacion solicitada</h2>
+           <p class='exito'><?=$GLOBALS['mensaje']?></p>
+         </div>
+         <?php }?>
+   <h2 class="text-center">Lista de empresas</h2>
    
  
       <table border='1' class="table table-striped">
          <thead >
               <tr>
+              <th scope="col">ID</th>
                  <th scope="col">Nombre</th>
-                 <th scope="col">Apellidos</th>
-                 <th scope="col">Poblacion</th>
-                 <th scope="col">Telefono</th>
-                   <th scope="col">Preferencias</th>
+                 <th scope="col">Cif</th>
+                 <th scope="col">Nombre contacto</th>
+                 <th scope="col">Telefono de contacto</th>
+                   <th scope="col">Web</th>
                  <th scope="col">Perfil</th>
-                 
-                  <th scope="col">Actualizar</th>
+                 <th scope="col">Qvid</th>
+                   <th scope="col">Valoracion</th>
+               
               </tr>
        </thead>
        </tbody>
@@ -52,7 +60,7 @@
           
           echo "<tr>";
           
-          
+          echo " <td>$al->id</td>";
             echo " <td>$al->nombre</td>";
             echo " <td>$al->cif</td>";
             echo "<td>$al->nombrecontacto</td>";

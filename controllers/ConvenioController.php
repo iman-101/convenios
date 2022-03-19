@@ -25,8 +25,8 @@ class ConvenioController{
             if(!$convenio)
                 throw new Exception("No se ha encontrado el convenio $id .");
                 
-                // $convenios =$alumno->getConvenios();
-                $mensaje="";
+               // $convenios =$alumno->getConvenios();
+              
                 include '../view/convenio/detalles.php';
                 
     }
@@ -78,30 +78,29 @@ class ConvenioController{
     }
     
     
-   /* public function delete(int $id=0){
+   public function delete(int $id=0){
         
-        if(!$prestamo = Prestamo::getById($id))
-            throw new Exception("No se encontró el prestamo $id");
+        if(!$convenio = Convenio::getById($id))
+            throw new Exception("No se encontra el convenio $id");
             
-            $socio=socio::getById($prestamo->idsocio);
             
-            include 'view/prestamo/borrar.php';
+            
+            include '../view/convenio/borrar.php';
             
     }
     
     public function destroy(){
         
         if(empty($_POST['borrar']))
-            throw new Exception('No se recibio  confirmación .');
+            throw new Exception('No se recibio  confirmacion .');
+            $id=empty($_POST['id'])? 0 :intval($_POST['id']);
             
-            $id = intval($_POST['id']);
-            $idsocio=intval($_POST['idsocio']);
-            
-            if(Prestamo::borrar($id)===false)
+            if(!Convenio::borrar($id))
                 throw new Exception("No se pudo borrar.");
                 
+                $GLOBALS['mensaje']="Borrado correctamente";
                 
-                (new SocioController())->show($idsocio) ;
+                include '../view/convenio/lista.php';
                 
                 
     }
@@ -111,64 +110,43 @@ class ConvenioController{
             throw new Exception('No se recibieron datos .');
             
             
-            $prestamo = new Prestamo();
-            $prestamo->id=intval($_POST['id']);
-            $prestamo->idsocio=intval($_POST['idsocio']);
-            $prestamo->idejemplar=intval($_POST['idejemplar']);
-            
-            $fecha_actual= Prestamo::getById($prestamo->id);
-           
-          // $a=intval($_POST['limite']);
-          
-          
-          $prestamo->limite = date("Y-m-d",strtotime($fecha_actual->limite."+ 3 days"));
+            $convenio = new Convenio();
+            $convenio->id=intval($_POST['id']);
+            $convenio->fin=$_POST['fin'];
+            $convenio->inicio=$_POST['inicio'];
+            $convenio->horario=$_POST['horario'];
+            $convenio->detalles=$_POST['detalles'];
+            $convenio->duracion=$_POST['duracion'];
+            $convenio->estado=$_POST['estado'];
          
-          if($prestamo->actualizarLimit($prestamo->limite,$prestamo->id) === false)
+            if(!$convenio->actualizar())
                 
-                throw  new Exception("No se pudo actualizar $prestamo->limite");
-                
-                $GLOBALS['mensaje'] ="Actualizar del prestamo $prestamo->id correcta.";
-                
-              //  $this->edit($prestamo->id);
-                $socio = Socio::getById($prestamo->idsocio);
-                $prestamos=$socio->getPrestamos();
-                
-                include 'view/socio/detalles.php';
+                $GLOBALS['mensaje']="No se pudo actualizar";
+            
+            else  
+                $GLOBALS['mensaje'] ="Actualizar del convenio $convenio->id correcta.";
+            
+            $this->edit($convenio->id);
+             
+           
+          
     }
     
     public function edit(int $id=0){
         
         if(!$id)
-            throw new Exception('No se indico el socio.');
+            throw new Exception('No se indico el convenio.');
             
             
-            $prestamo = Prestamo::getById($id);
+            $convenio = Convenio::getById($id);
          
-            if(!$prestamo)
-                throw new Exception("No existe el prestamo $id");
+            if(!$convenio)
+                throw new Exception("No existe el convenio $id");
                 
-                
-                
-               // include 'view/socio/detalles.php';
-                include 'view/prestamo/actualizar.php';
+              
+                include '../view/convenio/actualizar.php';
     }
     
-    public function devolver(int $idprestamo){
-        
-       
-        
-        $pre =Prestamo::getById($idprestamo);
-        $pre->devolucion=date("Y-m-d");
-      
-       
-        
-        if($pre->actualizar() === false)
-            
-            throw  new Exception("No se pudo actualizar $pre->devolucion");
-        $socio = Socio::getById($pre->idsocio);
-        $prestamos=$socio->getPrestamos();
-        include 'view/socio/detalles.php';
-        
-    }
-    */
+ 
+  
 }

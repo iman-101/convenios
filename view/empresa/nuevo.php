@@ -34,7 +34,7 @@
 ?>
     
     <div class="container"> 
-    <h2 class="text-center m-3">Nuevo alumno</h2>
+    <h2 class="text-center m-3">Nuevo empresas</h2>
    
         <form method="POST" action="/empresa/store">
            <table class="table">
@@ -59,7 +59,7 @@
                      <label>CIF</label>
                    </td>
                    <td>
-                      <input type="text" name="cif" required>
+                      <input type="text" name="cif" maxlength="9" required>
                     </td>
                 </tr>
                  <tr> 
@@ -121,7 +121,7 @@
            
         </form>
         
-        <a href="/usuario/list">Volver al listado de usuarios</a>
+        <a href="/empresa/list">Volver al listado </a>
     </div>
 </body>
 </html>

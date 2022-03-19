@@ -26,11 +26,11 @@
     Basic::nav("../../");
     ?>
       <div class="container">
-      <?php if($mensaje!==""){?>
+      <?php if(!empty($GLOBALS['mensaje'])){?>
      
          <div class="alert alert-success"> 
            <h2>Exito en la operacion solicitada</h2>
-           <p class='exito'><?=$mensaje?></p>
+           <p class='exito'><?=$GLOBALS['mensaje']?></p>
          </div>
          <?php }?>
 <h2>Detalles del empresa </h2>
@@ -55,7 +55,7 @@
    
   <table border='1' class="table table-striped">
   <?php 
-  if($convenios!==null){
+  if(!empty($convenios)){
     
       foreach( $convenios as $e){?>
            <p><b>Id: </b><?=$e->id?></p>

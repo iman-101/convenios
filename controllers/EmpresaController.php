@@ -30,8 +30,8 @@ class EmpresaController{
             if(!$empresa)
                 throw new Exception("No se ha encontrado el socio $id .");
                 
-               // $prestamos =$empresa->getconvenios();
-              $mensaje="";  
+               $convenios =$empresa->getconvenios();
+               $mensaje="Guardado  correctamente.";
                 include '../view/empresa/detalles.php';
                 
     }
@@ -81,13 +81,15 @@ class EmpresaController{
            
             try{
                 $empresa->guardar();
+                
+                $this->show($id);
             }catch(Exception $e){
+                
                 Usuario::borrar($id);
                 throw  new Exception("Empresa con id :$id NO guardado.");
             }
-            $mensaje="Guardado  correctamente.";
-            
-            include '../view/exito.php';
+           
+         
     }
     
     

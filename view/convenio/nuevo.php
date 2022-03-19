@@ -42,7 +42,19 @@
                     <label>idalumno *</label>
                   </td>
                   <td>
-                    <input type="text" name="idalumno" required>
+                    <input type="text" name="idalumno" list="listaalumno"required>
+                       
+                    <datalist id="listaalumno">
+                     <?php 
+                     foreach($alumnos as $e){?>
+                         
+                           <option value="<?=$e->id?>">
+                         
+                  <?php   }
+                     
+                     ?>
+                    
+                    </datalist>
                  </td>
                </tr>
                <tr> 
@@ -50,7 +62,21 @@
                      <label>idempresa</label>
                    </td>
                    <td>
-                      <input type="text" name="idempresa" value="<?=$empresa->id? $empresa->id : "";?>"required>
+                      <input type="text" name="idempresa" list="lista" required>
+                  
+                    
+                    <datalist id="lista">
+                     <?php 
+                     foreach($empresas as $e){?>
+                         
+                           <option value="<?=$e->id?>">
+                         
+                  <?php  }
+                     
+                     ?>
+                    
+                    </datalist>
+                   
                     </td>
                 </tr>
                <tr> 

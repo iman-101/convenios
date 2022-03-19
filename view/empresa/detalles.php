@@ -55,29 +55,26 @@
    
   <table border='1' class="table table-striped">
   <?php 
- /* if($prestamos){
-      
-      echo "<tr>";
-      foreach($prestamos as $e){
-          if($e->devolucion===null){
-              echo "<td>$e</td><td><a href='/prestamo/delete/$e->id'>Borrar</a></td><td>
-          <a href='/prestamo/edit/$e->id'> Actualizar</a></td><td><a href='/prestamo/devolver/$e->id'> Devolver</a></td>";
-              
-              echo "</tr>";
-          }else{
-          echo "<td>$e</td><td></td><td></td><td><a href='/prestamo/delete/$e->id'>Borrar</a></td>
-          ";
-        
-          echo "</tr>";
-          }
-      }
+  if($convenios!==null){
+    
+      foreach( $convenios as $e){?>
+           <p><b>Id: </b><?=$e->id?></p>
+           <p><b>id alumno: </b><?=$e->idalumno?></p>
+           <p><b>inicio: </b><?=$e->inicio?></p>
+           <p><b>fin: </b><?=$e->fin?></p>
+              <p><b>Horario: </b><?=$e->horario?></p>
+           <p><b>id Estado: </b><?=$e->estado?></p>
+              <p><b>Duracion: </b><?=$e->duracion?></p>
+         
+      <?php }
+         
       
   }else{
       
       
-      echo "<p>No tiene prestamo.</p>";
+      echo "<p>No tiene convenios.</p>";
   }
-  */
+  
   
   ?>
 </table>

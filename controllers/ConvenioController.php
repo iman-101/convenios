@@ -33,8 +33,9 @@ class ConvenioController{
     
     public function create(){
         
-        
-            
+            $empresas=Empresa::get();
+          
+            $alumnos=Alumno::get();
             include '../view/convenio/nuevo.php';
             
     }

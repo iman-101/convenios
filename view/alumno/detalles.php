@@ -25,12 +25,12 @@
     Basic::login();
     Basic::nav("../../");
     ?>
-      <div class="container">
-      <?php if($mensaje!==""){?>
+        <div class="container">
+      <?php if(!empty($GLOBALS['mensaje'])){?>
      
          <div class="alert alert-success"> 
            <h2>Exito en la operacion solicitada</h2>
-           <p class='exito'><?=$mensaje?></p>
+           <p class='exito'><?=$GLOBALS['mensaje']?></p>
          </div>
          <?php }?>
 <h2>Detalles del alumno </h2>
@@ -46,39 +46,59 @@
 <p><b>Preferencias: </b><?=$alumno->preferencias?></p>
 <p><b>Email: </b><?=$alumno->email?></p>
 <p><b>Perfil: </b><?=$alumno->perfil?></p>
- <a href='/alumno/edit/<?=$alumno->id?>'>Editar</a>
- <a href='/alumno/delete/<?=$alumno->id?>'>Eliminar</a>;
-<h2>Prestamos</h2>
 
-   
-  <table border='1' class="table table-striped">
+ <?php if(empty($GLOBALS['mensaje'])){?>
+      <a href='/alumno/edit/<?=$alumno->id?>'>Editar</a>
+ <a href='/alumno/delete/<?=$alumno->id?>'>Eliminar</a>;
+<h2>Convenios</h2>
+<?php   if(!empty($convenios)){?>
+    <table border='1' class="table table-striped">
+         <thead >
+              <tr>
+              <th scope="col">ID</th>
+                 <th scope="col">Idalumno</th>
+                 <th scope="col">Inicio</th>
+                 <th scope="col">Fin</th>
+                 <th scope="col">Horario</th>
+                   <th scope="col">Estado</th>
+                 <th scope="col">Duracion</th>
+            
+               
+              </tr>
+       </thead>
+       </tbody>
   <?php 
- /* if($prestamos){
-      
-      echo "<tr>";
-      foreach($prestamos as $e){
-          if($e->devolucion===null){
-              echo "<td>$e</td><td><a href='/prestamo/delete/$e->id'>Borrar</a></td><td>
-          <a href='/prestamo/edit/$e->id'> Actualizar</a></td><td><a href='/prestamo/devolver/$e->id'> Devolver</a></td>";
-              
-              echo "</tr>";
-          }else{
-          echo "<td>$e</td><td></td><td></td><td><a href='/prestamo/delete/$e->id'>Borrar</a></td>
-          ";
-        
-          echo "</tr>";
-          }
-      }
-      
-  }else{
-      
-      
-      echo "<p>No tiene prestamo.</p>";
-  }
-  */
   
-  ?>
+ 
+
+  
+          
+       foreach($convenios as $e){
+     
+          echo "<tr>";
+          
+          echo " <td>$e->id</td>";
+          echo " <td>$e->idalumno</td>";
+          echo " <td>$e->inicio</td>";
+          echo " <td>$e->fin</td>";
+          echo " <td>$e->horario</td>";
+          echo " <td>$e->estado</td>";
+          echo " <td>$e->horario</td>";
+          echo " <td>$e->duracion</td>";
+     
+         
+    }
+
+    }else{
+        echo "No tiene convenios.";
+    }
+    
+    }?>
+  
+  </tbody>
 </table>
+        
+
 
   </div>
 </body>

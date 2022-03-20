@@ -11,6 +11,8 @@ class AlumnoController{
     
     
     public function list(){
+        if(Login::get()->rol =="alumno")
+            throw new Exception("No tienes permiso para esta operacion");
         $alumnos = Alumno::get();
         
         
@@ -28,8 +30,8 @@ class AlumnoController{
        if(!$alumno)
            throw new Exception("No se ha encontrado el alumno $id .");
           
-          // $convenios =$alumno->getConvenios();
-             $mensaje="";
+          $convenios =$alumno->getConvenios($id);
+           
         include '../view/alumno/detalles.php';
        
     }
@@ -37,12 +39,15 @@ class AlumnoController{
     
     public function  create(){
         
-        
+        if(Login::get()->rol !=="cordinador")
+            throw new Exception("No tienes permiso para esta operacion");
         include '../view/alumno/nuevo.php';
     }
     
     public function store(){
         
+        if(Login::get()->rol !=="cordinador")
+            throw new Exception("No tienes permiso para esta operacion");
         if(empty($_POST['guardar']))
             throw new Exception('No se recibieron datos');
             
@@ -83,7 +88,7 @@ class AlumnoController{
          
             $alumno=Alumno::getById($id);
          
-         $mensaje='Alumno guardado correctamente';
+         $GLOBALS['mensaje']='Alumno guardado correctamente';
         
                 
               include '../view/alumno/detalles.php';
@@ -138,6 +143,8 @@ class AlumnoController{
     
     public function delete(int $id=0){
         
+        if(Login::get()->rol !=="cordinador")
+            throw new Exception("No tienes permiso para esta operacion");
        
         if(! $usuario=Usuario::getById($id)){
             throw new Exception("No se existe el usuario $id.");
@@ -147,7 +154,8 @@ class AlumnoController{
     }
     
     public function destroy(){
-        
+        if(Login::get()->rol !=="cordinador")
+            throw new Exception("No tienes permiso para esta operacion");
         $id=empty($_POST['id'])? 0 :intval($_POST['id']);
         
         

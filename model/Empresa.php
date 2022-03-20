@@ -2,11 +2,11 @@
 class Empresa extends  Model{
     
     
-    public function getConvenios(int $id):?Convenio{
+    public function getConvenios(int $id):array{
         
         $consulta="SELECT * FROM convenios WHERE idempresa=$id";
         
-        return DB::select($consulta,'Convenio');
+        return DB::selectAll($consulta,'Convenio');
     }
     
 }

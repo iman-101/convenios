@@ -21,13 +21,19 @@ class LoginController{
         
         $identificado = Usuario::identificar($u,$c);
         
-        if(!$identificado)
-            throw  new Exception('Los datos de identificacion no son correctos');
+        if(!$identificado){
+            
+            $Globals['mensaje']="Email o password no correcto";
+            include '../view/portada.php';
+        }else{
+           
+        
    
        Login::set($identificado);
       
        
        (new  welcome())->index();
+        }
     }
     
     

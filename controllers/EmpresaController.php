@@ -13,6 +13,8 @@ class EmpresaController{
     
     
     public function list(){
+        if(Login::get()->rol !=="cordinador")
+            throw new Exception("No tienes permiso para esta operacion");
         $empresas = Empresa::get();
         
         
@@ -30,7 +32,7 @@ class EmpresaController{
             if(!$empresa)
                 throw new Exception("No se ha encontrado el socio $id .");
                 $emp=new Empresa();
-              $convenios =$emp->getconvenios($id);
+               $convenios =$emp->getconvenios($id);
                
                 include '../view/empresa/detalles.php';
                 
@@ -38,13 +40,15 @@ class EmpresaController{
     
     
     public function create(){
-        
+        if(Login::get()->rol !=="cordinador")
+            throw new Exception("No tienes permiso para esta operacion");
         include '../view/empresa/nuevo.php';
         
     }
     
     public function store(){
-        
+        if(Login::get()->rol !=="cordinador")
+            throw new Exception("No tienes permiso para esta operacion");
         if(empty($_POST['guardar']))
             throw new Exception('No se recibieron datos');
             
@@ -140,7 +144,8 @@ class EmpresaController{
     
     
     public function delete(int $id=0){
-        
+        if(Login::get()->rol !=="cordinador")
+            throw new Exception("No tienes permiso para esta operacion");
         if(!$id){
             throw new Exception("No se indico el empresa a borrar.");
         }
@@ -157,6 +162,10 @@ class EmpresaController{
     
     
     public function destroy(){
+        
+        if(Login::get()->rol !=="cordinador")
+            throw new Exception("No tienes permiso para esta operacion");
+        
         if(empty($_POST['borrar']))
             throw new Exception('No se recibio  confirmación .');
             

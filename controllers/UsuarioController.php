@@ -8,8 +8,8 @@ class UsuarioController{
     }
     
     public function list(){
-        if(!Login::isAdmin())
-            throw  new Exception("No tiene permiso para hacern esto.");
+        if(Login::get()->rol !=="cordinador")
+            throw new Exception("No tienes permiso para esta operacion");
         
         $usuarios =Usuario::get();
         
@@ -18,7 +18,8 @@ class UsuarioController{
     
     public function  show(int $id=0){
         
-       
+        if(Login::get()->rol !=="cordinador")
+            throw new Exception("No tienes permiso para esta operacion");
         
         
         
@@ -30,13 +31,16 @@ class UsuarioController{
     
     
     public function  create(){
-       
+        if(Login::get()->rol !=="cordinador")
+            throw new Exception("No tienes permiso para esta operacion");
             
             include '../view/usuario/nuevo.php';
     }
     
     public function store(){
         
+        if(Login::get()->rol !=="cordinador")
+            throw new Exception("No tienes permiso para esta operacion");
         if(empty($_POST['guardar']))
             throw new Exception('No se recibieron datos');
             
@@ -62,56 +66,8 @@ class UsuarioController{
     
     
     
-    public function edit(int $id=0){
-        
-        $usuario = Usuario::getById($id);
-        
-        if(!$usuario)
-            throw new Exception('No se indico el usuario.');
-            
 
-            
-           /* if(!$socio)
-                throw new Exception("No existe el usuario .");*/
-                
-                
-                
-                include 'view/usuario/actualizar.php';
-    }
-    
-    
-    public function update(){
-        
-        if(empty($_POST['actualizar']))
-            throw new Exception('No se recibieron datos .');
-       
-            
-            $id = intval($_POST['id']);
-            if(!$usuario = Usuario::getById($id))
-                throw new Exception('No existe el usuario $id .');
-            $usuario->usuario =$_POST['usuario'];
-            
-            $usuario->nombre =$_POST['nombre'];
-            $usuario->apellido1 =$_POST['apellido1'];
-            $usuario->apellido2 =$_POST['apellido2'];
-            $usuario->privilegio =intval($_POST['privilegio']);
-            $usuario->administrador =empty($_POST['administrador'])? 0 : 1;
-            $usuario->email =$_POST['email'];
-            
-            
-           
-            if(!empty($_POST['clave']))
-               $usuario->clave = md5($_POST['clave']);
-        
-           if($usuario->actualizar()===false)
-               throw new Exception('No se actualizar %usuario->usuario  .');
-    
-                
-            $GLOBALS['mensaje'] ="Actualizar del socio $usuario->id correcta.";
-                
-           $this->edit($usuario->id);
-    }
-    
+
     
     public function delete(int $id=0){
         

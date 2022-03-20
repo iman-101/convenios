@@ -49,36 +49,56 @@
 <p><b>Valoracion: </b><?=$empresa->valoracion?></p>
  <a href='/empresa/edit/<?=$empresa->id?>'>Editar</a>
  <a href='/empresa/delete/<?=$empresa->id?>'>Eliminar</a>;
- <a href='/convenio/createid/<?=$empresa->id?>'>Nuevo convenio</a>;
+ <a href='/empresa/create/<?=$empresa->id?>'>Nuevo convenio</a>;
+ <?php if(empty($GLOBALS['mensaje'])){?>
 <h2>Convenios</h2>
-
-   
-  <table border='1' class="table table-striped">
+<?php  if(!empty($convenios)){?>
+    <table border='1' class="table table-striped">
+         <thead >
+              <tr>
+              <th scope="col">ID</th>
+                 <th scope="col">Idalumno</th>
+                 <th scope="col">Inicio</th>
+                 <th scope="col">Fin</th>
+                 <th scope="col">Horario</th>
+                   <th scope="col">Estado</th>
+                 <th scope="col">Duracion</th>
+            
+               
+              </tr>
+       </thead>
+       </tbody>
   <?php 
-  if(!empty($convenios)){
-    
-      foreach( $convenios as $e){?>
-           <p><b>Id: </b><?=$e->id?></p>
-           <p><b>id alumno: </b><?=$e->idalumno?></p>
-           <p><b>inicio: </b><?=$e->inicio?></p>
-           <p><b>fin: </b><?=$e->fin?></p>
-              <p><b>Horario: </b><?=$e->horario?></p>
-           <p><b>id Estado: </b><?=$e->estado?></p>
-              <p><b>Duracion: </b><?=$e->duracion?></p>
-         
-      <?php }
-         
-      
-  }else{
-      
-      
-      echo "<p>No tiene convenios.</p>";
-  }
   
+ 
+ 
+  
+          
+       foreach($convenios as $e){
+     
+          echo "<tr>";
+          
+          echo " <td>$e->id</td>";
+          echo " <td>$e->idalumno</td>";
+          echo " <td>$e->inicio</td>";
+          echo " <td>$e->fin</td>";
+          echo " <td>$e->horario</td>";
+          echo " <td>$e->estado</td>";
+          echo " <td>$e->horario</td>";
+          echo " <td>$e->duracion</td>";
+          
+       }
+       
+    }else{
+        echo "No tiene convenios.";
+    }
+    
+    
   
   ?>
+  </tbody>
 </table>
-
+ <?php }?>
   </div>
 </body>
 </html>

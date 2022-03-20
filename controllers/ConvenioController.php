@@ -8,10 +8,25 @@ class ConvenioController{
     
     
     public function list(){
-        $convenios = Convenio::get();
-        
-        
-        include '../view/convenio/lista.php';
+        if(Login::get()->rol =="alumno"){
+            $alumno=new Alumno();
+            $convenios = $alumno->getConvenios(Login::get()->id);
+            
+            include '../view/convenio/lista.php';
+        }else if(Login::get()->rol =="empresa"){
+            $empresa=new Empresa();
+            $convenios = $empresa->getConvenios(Login::get()->id);
+            
+            include '../view/convenio/lista.php';
+            
+        }else{
+            
+            $convenios = Convenio::get();
+            
+            
+            include '../view/convenio/lista.php';
+        }
+       
     }
     
     
@@ -32,7 +47,9 @@ class ConvenioController{
     }
     
     public function create(){
-        
+        if(Login::get()->rol !=="cordinador"){
+            throw  new  Exception("No tienes permiso");
+        }
             $empresas=Empresa::get();
           
             $alumnos=Alumno::get();
@@ -48,7 +65,9 @@ class ConvenioController{
     }
     
     public function store(){
-        
+        if(Login::get()->rol !=="cordinador"){
+            throw  new  Exception("No tienes permiso");
+        }
         if(empty($_POST['guardar']))
             throw new Exception('No se recibieron datos');
             
@@ -79,7 +98,9 @@ class ConvenioController{
     
     
    public function delete(int $id=0){
-        
+       if(Login::get()->rol !=="cordinador"){
+           throw  new  Exception("No tienes permiso");
+       }
         if(!$convenio = Convenio::getById($id))
             throw new Exception("No se encontra el convenio $id");
             
@@ -90,7 +111,9 @@ class ConvenioController{
     }
     
     public function destroy(){
-        
+        if(Login::get()->rol !=="cordinador"){
+            throw  new  Exception("No tienes permiso");
+        }
         if(empty($_POST['borrar']))
             throw new Exception('No se recibio  confirmacion .');
             $id=empty($_POST['id'])? 0 :intval($_POST['id']);
@@ -105,7 +128,9 @@ class ConvenioController{
                 
     }
     public function update(){
-        
+        if(Login::get()->rol !=="cordinador"){
+            throw  new  Exception("No tienes permiso");
+        }
         if(empty($_POST['actualizar']))
             throw new Exception('No se recibieron datos .');
             
@@ -133,7 +158,9 @@ class ConvenioController{
     }
     
     public function edit(int $id=0){
-        
+        if(Login::get()->rol !=="cordinador"){
+            throw  new  Exception("No tienes permiso");
+        }
         if(!$id)
             throw new Exception('No se indico el convenio.');
             

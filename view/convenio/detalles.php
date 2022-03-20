@@ -26,11 +26,11 @@
     Basic::nav("../../");
     ?>
       <div class="container">
-      <?php if($mensaje!==""){?>
+      <?php if(!empty($GLOBALS['mensaje'])){?>
      
          <div class="alert alert-success"> 
            <h2>Exito en la operacion solicitada</h2>
-           <p class='exito'><?=$mensaje?></p>
+           <p class='exito'><?=$GLOBALS['mensaje']?></p>
          </div>
          <?php }?>
 <h2>Detalles del convenio </h2>
@@ -47,9 +47,13 @@
 <p><b>Horario: </b><?=$convenio->horario?></p>
 <p><b>Duracion: </b><?=$convenio->duracion?></p>
 <p><b>Estado: </b><?=$convenio->estado?></p>
+<?php 
+if(Login::get()->rol =="cordinador"){
+
+?>
  <a href='/convenio/edit/<?=$convenio->id?>'>Editar convenio</a>
  <a href='/convenio/delete/<?=$convenio->id?>'>Eliminar convenio</a>;
-  
+  <?php }?>
 <h2></h2>
 
    

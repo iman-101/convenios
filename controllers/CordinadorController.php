@@ -11,6 +11,8 @@ class CordinadorController{
     
     
     public function list(){
+        if(Login::get()->rol !=="cordinador")
+            throw new Exception("No tienes permiso para esta operacion");
         $alunmos = Alumno::get();
         
         
@@ -36,14 +38,16 @@ class CordinadorController{
     
     
     public function  create(){
-        
+        if(Login::get()->rol !=="cordinador")
+            throw new Exception("No tienes permiso para esta operacion");
         
         include '../view/cordinador/nuevo.php';
     }
     
  
     public function store(){
-        
+        if(Login::get()->rol !=="cordinador")
+            throw new Exception("No tienes permiso para esta operacion");
         if(empty($_POST['guardar']))
             throw new Exception('No se recibieron datos');
             

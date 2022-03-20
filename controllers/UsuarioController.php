@@ -79,7 +79,7 @@ class UsuarioController{
             throw new Exception("No se existe el socio $id.");
         }
         
-        include 'view/usuario/borrar.php';
+        include '../view/usuario/borrar.php';
     }
     
     public function destroy(){

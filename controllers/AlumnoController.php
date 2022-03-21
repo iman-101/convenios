@@ -11,7 +11,7 @@ class AlumnoController{
     
     
     public function list(){
-        if(Login::get()->rol =="alumno")
+        if(Login::get()->rol !=="cordinador")
             throw new Exception("No tienes permiso para esta operacion");
         $alumnos = Alumno::get();
         
@@ -203,7 +203,29 @@ class AlumnoController{
     
     
 
-    
+    public function buscar(){
+        
+        if(empty($_POST['buscar'])){
+            $this->list();
+            return;
+        }
+        
+        
+        
+        $campo=$_POST['campo'];
+        $valor=$_POST['valor'];
+        $orden=$_POST['orden'];
+        $sentido =empty($_POST['sentido'])? 'ASC' : $_POST['sentido'];
+        
+        $alumnos =Alumno::getFiltred($campo, $valor, $orden, $sentido);
+        
+        if(empty($alumnos))
+            $GLOBALS['mensaje']="no hay resultado";
+        
+        require_once '../view/alumno/lista.php';
+        
+        
+    }
     
     
  

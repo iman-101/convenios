@@ -27,11 +27,71 @@
     ?>
     <div class="container">
    
-      
-     
+           <form method="post" action="/alumno/buscar">
+             
+             <label>Camp:</label>
+             
+          <select name="campo">
+             
+                  <option value="nombre" <?=!empty($campo) && $campo=='nombre'? ' selected ' :'';?>>
+                  
+                  Nombre</option>
+                    <option value="apellidos" <?=!empty($campo) && $campo=='apellidos'? ' selected ' :'';?>>
+                  
+                  Apellidos</option>
+                  <option value="id" <?=!empty($campo) && $campo=='id'? ' selected ' :'';?>>
+                  
+                  Id</option>
+                  
+                  <option value="poblacion" <?=!empty($campo) && $campo=='poblacion'? ' selected ' :'';?>>
+                  
+                  Poblacion</option>
+                
+             </select>
+             
+            <label>Valor:</label>
+            
+            <input type="text" name="valor" value=""<?=!empty($valor)? $valor : '';?>>
+            
+             <label>Orden:</label> 
+             
+              <select name="orden">
+                 <option value="nombre" <?=!empty($orden) && $orden=='nombre'? ' selected ' :'';?>>
+                  
+                  Nombre</option>
+                  
+                  <option value="apellidos" <?=!empty($orden) && $orden=='apellidos'? ' selected ' :'';?>>
+                  
+                  Apellidos</option>
+                  
+                  <option value="id" <?=!empty($orden) && $orden=='id'? ' selected ' :'';?>>
+                  
+                  id</option>
+                   
+                  <option value="poblacion" <?=!empty($orden) && $orden=='poblacion'? ' selected ' :'';?>>
+                  
+                  Poblacion</option>
+              </select>
+              
+             <input type="radio" name="nombre" value="ASC"  
+             <?=empty($nombre) || $nombre=='ASC'? ' checked ' :'';?>>
+            <label>ascedente</label>
+            
+             <input type="radio" name="nombre" value="DESC"  
+             <?=!empty($nombre) && $nombre=='DESC'? ' checked ' :'';?>>
+             <label>descedente</label>
+             <input type="submit" name="buscar" value="Buscar">
+          </form>
+      <a href="/alumno/list">Quitar Filtros</a>
    <h2 class="text-center">Lista de alumnos</h2>
    
- 
+          <?php if(!empty($GLOBALS['mensaje'])){?>
+     
+         <div class="alert alert-danger"> 
+         
+           <h2 class='exito'><?=$GLOBALS['mensaje']?></h2>
+         </div>
+         <?php }else{?>
       <table border='1' class="table table-striped">
          <thead >
               <tr>
@@ -67,9 +127,10 @@
             echo "</td>";
             echo "</tr>";
       }
-      ?>
+             ?>
       </tbody>
  </table>
+    <?php  } ?>
 </div>
   </body>
   </html> 

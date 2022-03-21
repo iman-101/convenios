@@ -222,6 +222,8 @@ class EmpresaController{
     
     
     
+    
+    
     public function buscar(){
         
         if(empty($_POST['buscar'])){
@@ -236,13 +238,15 @@ class EmpresaController{
         $orden=$_POST['orden'];
         $sentido =empty($_POST['sentido'])? 'ASC' : $_POST['sentido'];
         
-        $socios =Empresa::getFiltred($campo, $valor, $orden, $sentido);
+        $empresas =Empresa::getFiltred($campo, $valor, $orden, $sentido);
         
-        require_once 'view/alumno/lista.php';
-        
-        
+        if(empty($empresas))
+            $GLOBALS['mensaje']="no hay resultado";
+            
+            require_once '../view/empresa/lista.php';
+            
+            
     }
-    
     
     
     

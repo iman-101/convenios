@@ -28,14 +28,66 @@
     <div class="container">
    
       
-       <?php if(!empty($GLOBALS['mensaje'])){?>
-     
-         <div class="alert alert-success"> 
-           <h2>Exito en la operacion solicitada</h2>
-           <p class='exito'><?=$GLOBALS['mensaje']?></p>
-         </div>
-         <?php }?>
+              <form method="post" action="/empresa/buscar">
+             
+             <label>Camp:</label>
+             
+          <select name="campo">
+             
+                  <option value="nombre" <?=!empty($campo) && $campo=='nombre'? ' selected ' :'';?>>
+                  
+                  Nombre</option>
+              
+                  <option value="id" <?=!empty($campo) && $campo=='id'? ' selected ' :'';?>>
+                  
+                  Id</option>
+                  
+                  <option value="cif" <?=!empty($campo) && $campo=='cif'? ' selected ' :'';?>>
+                  
+                  Cif</option>
+                
+             </select>
+             
+            <label>Valor:</label>
+            
+            <input type="text" name="valor" value=""<?=!empty($valor)? $valor : '';?>>
+            
+             <label>Orden:</label> 
+             
+              <select name="orden">
+                 <option value="nombre" <?=!empty($orden) && $orden=='nombre'? ' selected ' :'';?>>
+                  
+                  Nombre</option>
+                
+                  
+                  <option value="id" <?=!empty($orden) && $orden=='id'? ' selected ' :'';?>>
+                  
+                  id</option>
+                   
+                  <option value="cif" <?=!empty($orden) && $orden=='cif'? ' selected ' :'';?>>
+                  
+                  Cif</option>
+              </select>
+              <input type="radio" name="sentido" value="ASC"  
+             <?=empty($sentido) || $sentido=='ASC'? ' checked ' :'';?>>
+            <label>ascedente</label>
+            
+             <input type="radio" name="sentido" value="DESC"  
+             <?=!empty($sentido) && $sentido=='DESC'? ' checked ' :'';?>>
+             <label>descedente</label>
+             <input type="submit" name="buscar" value="Buscar">
+          </form>
+      <a href="/empresa/list">Quitar Filtros</a>
    <h2 class="text-center">Lista de empresas</h2>
+   
+          <?php if(!empty($GLOBALS['mensaje'])){?>
+     
+         <div class="alert alert-danger"> 
+         
+           <h2 class='exito'><?=$GLOBALS['mensaje']?></h2>
+         </div>
+         <?php }else{?>
+
    
  
       <table border='1' class="table table-striped">
@@ -80,6 +132,7 @@
       ?>
       </tbody>
  </table>
+ <?php }?>
 </div>
   </body>
   </html> 

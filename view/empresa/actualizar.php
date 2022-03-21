@@ -27,11 +27,15 @@
     ?>
    <div class="container">
         <h2>Formulario de edition</h2>
+    
         
-        
-        <?=empty($GLOBALS['mensaje'])? "" : "<p>".$GLOBALS['mensaje']."</p>"?>
-        
-        
+          <?php if(!empty($GLOBALS['mensaje'])){?>
+     
+         <div class="alert alert-success"> 
+           <h2>Exito en la operacion solicitada</h2>
+           <p class='exito'><?=$GLOBALS['mensaje']?></p>
+         </div>
+         <?php }?>
         
         <form method="POST" action="/empresa/update" >
            
@@ -59,9 +63,14 @@
                               
             <label>preferencias:</label>
                <input type="text" name="preferencias" value="<?=$empresa->preferencias?>">
-           
+           <br>
            <label>qbid:</label>
-           <input type="text" name="qbid" value="<?=$empresa->qbid?>"><br>
+           
+               <label>Si</label>
+                       <input type="radio" name="qbid"   
+                        <?=empty($sentido)? ' checked ' :'';?>   value="<?=$empresa->qbid?>">
+                      <label>No</label>    
+                         <input type="radio" name="qbid" value="<?=$empresa->qbid?>" ><br>
             <label>Valoracion:</label>
            <input type="text" name="valoracion" value="<?=$empresa->valoracion?>"><br>
         

@@ -6,7 +6,7 @@ class LoginController{
         
         include '../view/login.php';
     }
-    
+   
     public function login(){
         
         if(empty($_POST['identificar']))
@@ -24,6 +24,7 @@ class LoginController{
         if(!$identificado){
             
             $Globals['mensaje']="Email o password no correcto";
+            
             include '../view/portada.php';
         }else{
            
@@ -32,7 +33,9 @@ class LoginController{
        Login::set($identificado);
       
        
-       (new  welcome())->index();
+       (new UsuarioController())->home();
+       
+       
         }
     }
     

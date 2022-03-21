@@ -27,10 +27,13 @@
     ?>
    <div class="container">
         <h2>Formulario de edition</h2>
-        
-        
-        <?=empty($GLOBALS['mensaje'])? "" : "<p>".$GLOBALS['mensaje']."</p>"?>
-        
+           <?php if(!empty($GLOBALS['mensaje'])){?>
+     
+         <div class="alert alert-success"> 
+           <h2>Exito en la operacion solicitada</h2>
+           <p class='exito'><?=$GLOBALS['mensaje']?></p>
+         </div>
+         <?php }?>
         
         
         <form method="POST" action="/convenio/update" >

@@ -67,7 +67,11 @@
                      <label>Qbid</label>
                    </td>
                    <td>
-                      <input type="text" name="qbid" required>
+                     <label>Si</label>
+                       <input type="radio" name="qbid"   
+                        <?=empty($sentido)? ' checked ' :'';?>   value="1">
+                      <label>No</label>    
+                         <input type="radio" name="qbid" value="0" >
                     </td>
                 </tr>
                  <tr> 

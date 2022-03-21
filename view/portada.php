@@ -30,7 +30,7 @@
       
      
        <div  class="container">
-       <?php if(!Login::get()){?>
+      
         <h2 class="text-center">Acceso a la aplication</h2>
         <form method="post" action="/login/login" class="form_login">
              <div class="mb-3 mt-3">
@@ -52,23 +52,7 @@
           ?>
         </form>
     
-      
-        <?php }else{
-            (TEMPLATE)::login();
-            (TEMPLATE)::nav("../");
-            if(Login::get() && Login::get()->rol=="alumno"){?>
-            <h2>hola <?php echo Login::get()->displayname;?></h2>
-       <?php  }else if(Login::get() && Login::get()->rol =="empresa"){?>
-            <h2 class="text-center">Hola <?php echo Login::get()->displayname;?></h2>
-            
-       <?php  }else if(Login::get() && Login::get()->rol=="cordinador"){?>
-       <h2>hola <?php echo Login::get()->displayname;?></h2>
-        
-        
-      <?php  }else{
-          "";
-      }
-        }?>
+
        
        
     </div> 

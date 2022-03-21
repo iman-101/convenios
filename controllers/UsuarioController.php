@@ -15,7 +15,37 @@ class UsuarioController{
         
         include '../view/usuario/lista.php';
     }
-    
+    public function home(){
+        
+        if(!Login::get())
+            throw new Exception("Acceso no permitido");
+        
+       
+            switch(Login::get()->rol){
+                case"empresa":
+                    
+                    $empresa= new Empresa();
+                    $empresa->getConvenios(Login::get()->id);
+                    
+                    include '../view/empresa/home.php';
+                    break;
+                case "alumno":
+                    $alumno= new Empresa();
+                    $alumno->getConvenios(Login::get()->id);
+                    include '../view/alumno/home.php';
+                    break;
+                    
+                    
+                case "cordinador":
+                    
+                    include '../view/cordinador/home.php';
+                    break;
+                default: 
+                    throw new Exception("Acceso no permitido");
+            }
+        
+        
+    }
     public function  show(int $id=0){
         
         if(Login::get()->rol !=="cordinador")

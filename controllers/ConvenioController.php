@@ -92,7 +92,8 @@ class ConvenioController{
             
             $id=$convenio->guardar();
             $convenio=Convenio::getById($id);
-            $mensaje="Guardado correctamente";
+            
+            $GLOBALS['mensaje']="actualizar correctamente";
             include '../view/convenio/detalles.php';
     }
     
@@ -144,16 +145,14 @@ class ConvenioController{
             $convenio->duracion=$_POST['duracion'];
             $convenio->estado=$_POST['estado'];
          
-            if(!$convenio->actualizar())
+          $convenio->actualizar();
                 
-                $GLOBALS['mensaje']="No se pudo actualizar";
+                $GLOBALS['mensaje']="Actualizado correctamente";
             
-            else  
-                $GLOBALS['mensaje'] ="Actualizar del convenio $convenio->id correcta.";
-            
+         
             $this->edit($convenio->id);
              
-           
+            
           
     }
     
@@ -178,6 +177,40 @@ class ConvenioController{
                 include '../view/convenio/actualizar.php';
     }
     
- 
+    public function buscar(){
+        
+        if(empty($_POST['buscar'])){
+            $this->list();
+            return;
+        }
+        
+        
+        
+        $campo=$_POST['campo'];
+        $valor=$_POST['valor'];
+        $orden=$_POST['orden'];
+        
+        $sentido =empty($_POST['sentido'])? 'ASC' : $_POST['sentido'];
+        
+        if($campo=='inicio'){
+            
+           $final= date("Y-m-d",strtotime($valor."+ 1 year"));
+           
+          
+           
+            $convenios =Convenio::getByDate($valor,$final);
+            
+        }else{
+          
+            $convenios =Convenio::getFiltred($campo, $valor, $orden, $sentido);
+        }
+        
+        if(empty($convenios))
+            $GLOBALS['mensaje']="no hay resultado";
+            
+            require_once '../view/convenio/lista.php';
+            
+            
+    }
   
 }

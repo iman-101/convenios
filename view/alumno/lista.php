@@ -95,6 +95,7 @@
       <table border='1' class="table table-striped">
          <thead >
               <tr>
+                <th scope="col">Id</th>
                  <th scope="col">Nombre</th>
                  <th scope="col">Apellidos</th>
                  <th scope="col">Poblacion</th>
@@ -112,7 +113,7 @@
           
           echo "<tr>";
           
-          
+          echo " <td>$al->id</td>";
             echo " <td>$al->nombre</td>";
             echo " <td>$al->apellidos</td>";
             echo "<td>$al->poblacion</td>";

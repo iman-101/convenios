@@ -76,7 +76,7 @@ class Model{
        
     }
     
-    public static function getFiltred(string $campo='titulo',string $valor='',
+    public static function getFiltred(string $campo='id',string $valor='',
         string $orden = 'id',string $sentido='ASC'):array{
             
             $tabla = strtolower(get_called_class()).'s';
@@ -84,6 +84,7 @@ class Model{
             $consulta = "SELECT * FROM $tabla
              WHERE $campo LIKE '%$valor%' ORDER BY $orden $sentido";
             
+            echo $consulta;
             return DB::selectAll($consulta, get_called_class());
             
     }

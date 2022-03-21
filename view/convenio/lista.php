@@ -27,10 +27,74 @@
     ?>
     <div class="container">
    
-      
-     
-   <h2 class="text-center">Lista de convenios</h2>
+         
+              <form method="post" action="/convenio/buscar">
+             
+             <label>Camp:</label>
+             
+          <select name="campo">
+             
+                  <option value="id" <?=!empty($campo) && $campo=='id'? ' selected ' :'';?>>
+                  
+                  Id</option>
+              
+                  <option value="idalumno" <?=!empty($campo) && $campo=='idalumno'? ' selected ' :'';?>>
+                  
+                  Idalumno</option>
+                  
+                  <option value="idempresa" <?=!empty($campo) && $campo=='idempresa'? ' selected ' :'';?>>
+                  
+                  Idempresa</option>
+                   <option value="inicio" <?=!empty($campo) && $campo=='inicio'? ' selected ' :'';?>>
+                  
+                  Fecha</option>
+                
+             </select>
+             
+            <label>Valor:</label>
+            
+            <input type="text" name="valor" value=""<?=!empty($valor)? $valor : '';?>>
+            
+             <label>Orden:</label> 
+             
+              <select name="orden">
+                 <option value="id" <?=!empty($orden) && $orden=='id'? ' selected ' :'';?>>
+                  
+                  Nombre</option>
+                
+                  
+                  <option value="idalumno" <?=!empty($orden) && $orden=='id'? ' selected ' :'';?>>
+                  
+                  idalumno</option>
+                   
+                  <option value="idempresa" <?=!empty($orden) && $orden=='cif'? ' selected ' :'';?>>
+                  
+                  Idempresa</option>
+                      
+                  <option value="inicio" <?=!empty($orden) && $orden=='inicio'? ' selected ' :'';?>>
+                  
+                  Idempresa</option>
+              </select>
+              <input type="radio" name="sentido" value="ASC"  
+             <?=empty($sentido) || $sentido=='ASC'? ' checked ' :'';?>>
+            <label>ascedente</label>
+            
+             <input type="radio" name="sentido" value="DESC"  
+             <?=!empty($sentido) && $sentido=='DESC'? ' checked ' :'';?>>
+             <label>descedente</label>
+             <input type="submit" name="buscar" value="Buscar">
+          </form>
+      <a href="/empresa/list">Quitar Filtros</a>
+   <h2 class="text-center">Lista de empresas</h2>
    
+          <?php if(!empty($GLOBALS['mensaje'])){?>
+     
+         <div class="alert alert-danger"> 
+         
+           <h2 class='exito'><?=$GLOBALS['mensaje']?></h2>
+         </div>
+         <?php }else{?>
+
  <?php  if(!empty($convenios) ){
  ?>
       <table border='1' class="table table-striped">
@@ -85,7 +149,9 @@
  <?php }else{
      echo "<h2>No se encuentra convenios</h2>";
      
- }?>
+ }
+ 
+             }?>
 </div>
   </body>
   </html> 

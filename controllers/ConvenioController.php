@@ -159,6 +159,10 @@ class ConvenioController{
     
     public function edit(int $id=0){
         if(Login::get()->rol !=="cordinador"){
+            if(Login::get()->rol =="alumno"){
+                
+                
+            }
             throw  new  Exception("No tienes permiso");
         }
         if(!$id)

@@ -7,16 +7,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 <!--font awsome-->
-<link rel="stylesheet" type="text/css" href="../../mypro/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/mypro/css/all.min.css">
 <!--jquery-->
-<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="/js/jquery.js"></script>
 <!--bootstrap js-->
-<script src="../../js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 <!--my style-->
-<link rel="stylesheet" type="text/css" href="../../css/style.css">
-<script type="text/javascript" src="../../js/myscript.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+<script type="text/javascript" src="/js/myscript.js"></script>
 
 <title>Biblioteca</title>
 </head>
@@ -35,6 +35,7 @@
         
         <form method="POST" action="/empresa/update" >
            
+            
            <input type="hidden" name="id" value="<?=$empresa->id?>">
            <label>Nombre:</label>
            <input type="text" name="nombre" value="<?=$empresa->nombre?>"><br>
@@ -55,18 +56,22 @@
                      
             <label>Web:</label>
            <input type="text" name="web" value="<?=$empresa->web?>"><br>
-           
+                              
+            <label>preferencias:</label>
+               <input type="text" name="preferencias" value="<?=$empresa->preferencias?>">
            
            <label>qbid:</label>
            <input type="text" name="qbid" value="<?=$empresa->qbid?>"><br>
             <label>Valoracion:</label>
            <input type="text" name="valoracion" value="<?=$empresa->valoracion?>"><br>
-           
+        
            <input type="submit" name="actualizar"  value="Actualizar"><br>
         
         </form>
+        <?php if(Login::get()->rol=="corrdinador"){?>
         <a href="/empresa/show/<?=$empresa->id?>">Detalles</a>
         <a href="/empresa/list">Volver al listado</a>
+        <?php }?>
    </div>
 </body>
 </html>

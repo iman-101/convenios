@@ -21,6 +21,8 @@ class AlumnoController{
     
     
     public function show(int $id=0){
+        if(Login::get()->rol !=="cordinador")
+            throw new Exception("No tienes permiso para esta operacion");
         if(!$id)
             throw new Exception("No se indicó el alumno .");
         
@@ -41,6 +43,8 @@ class AlumnoController{
         
         if(Login::get()->rol !=="cordinador")
             throw new Exception("No tienes permiso para esta operacion");
+        
+            
         include '../view/alumno/nuevo.php';
     }
     
@@ -98,6 +102,10 @@ class AlumnoController{
     
     public function edit(int $id=0){
         
+        if(Login::get()->rol =="empresa"){
+            throw new Exception("No tienes permiso");
+        }
+        
         if(!$id)
             throw new Exception('No se indico el alumno.');
             
@@ -115,13 +123,34 @@ class AlumnoController{
     public function update(){
         
         if(empty($_POST['actualizar']))
-            throw new Exception('No se recibieron datos .');
-            
+            throw new Exception('No se recibieron datos .'); 
+        
+        if(Login::get()->rol =="empresa"){
+            throw new Exception("No tienes permiso");
+        }
+         
             $alumno =Alumno::getById(intval($_POST['id'])); 
-      
-       
+            
             if(!$alumno)
-            throw new Exception('No existe el libro.');
+                throw new Exception('No existe el libro.');
+            
+                if(Login::get()->rol !=="cordinador"){
+                    if(Login::get()->rol == "alumno"){
+                        
+                        $alumno->preferencias =$_POST['preferencias'];
+                        
+                        
+                        if($alumno->actualizar() === false)
+                            
+                            throw  new Exception("No se pudo actualizar $alumno->nombre");
+                        
+                            $GLOBALS['mensaje'] ="Actualizar del alumno $alumno->nombre correcta.";
+                            
+                            $this->edit($alumno->id);
+                    }else{
+                        throw  new Exception("No tienes permiso");
+                    }
+                }else{
         
         
         $alumno->nombre =$_POST['nombre'];
@@ -139,6 +168,7 @@ class AlumnoController{
        $GLOBALS['mensaje'] ="Actualizar del alumno $alumno->nombre correcta.";
        
        $this->edit($alumno->id);
+                }
     }
     
     public function delete(int $id=0){

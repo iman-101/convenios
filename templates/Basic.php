@@ -54,14 +54,14 @@ class Basic{
 		        <div class="collapse navbar-collapse" id="first">
 		             <ul class="navbar-nav ms-auto myDiv" >
 		             
-		                <?php if( Login::get() && Login::get()->rol =="alumno"){?>
+		                <?php if( Login::get() && Login::get()->rol =="alumno" ){?>
 		               <li class="nav-item"><a href="/convenio" class="nav-link">Ver convenios</a></li>
-		               <li class="nav-item"><a href="/convenio/edit" class="nav-link">Editar preferencias</a></li>
+		               <li class="nav-item"><a href="/alumno/edit/<?=Login::get()->id?>" class="nav-link">Editar preferencias</a></li>
 		               <?php 
    }else if(Login::get() &&  Login::get()->rol =="empresa"){?>
                             <li class="nav-item"><a href="/convenio" class="nav-link">Ver convenios</a></li>
-		                    <li class="nav-item"><a href="/convenio/edit" class="nav-link">Editar preferencias</a></li>
-                            <li class="nav-item"><a href="/empresa" class="nav-link">modificar datos</a></li>
+		                    <li class="nav-item"><a href="/empresa/editpre/<?=Login::get()->id?>" class="nav-link">Editar mis preferencias</a></li>
+                            <li class="nav-item"><a href="/empresa/edit/<?=Login::get()->id?>" class="nav-link">modificar mis datos</a></li>
                           <?php }else if(Login::get() &&  Login::get()->rol=="cordinador"){ ?>
                           
                               <li class="nav-item"><a href="/alumno/list" class="nav-link">Ver alumnos</a></li>

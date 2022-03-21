@@ -34,6 +34,11 @@
         
         
         <form method="POST" action="/alumno/update" >
+           <?php if(Login::get()->rol == "alumno"){?>
+           <input type="hidden" name="id" value="<?=$alumno->id?>">
+           <label>Preferencias:</label>
+           <input type="text" name="preferencias" value="<?=$alumno->preferencias?>"><br>
+           <?php }else{?>
            
            <input type="hidden" name="id" value="<?=$alumno->id?>">
            <label>Nombre:</label>
@@ -52,7 +57,7 @@
        <label>Perfil:</label>
            <input type="text" name="perfil" value="<?=$alumno->perfil?>"><br>
          
-           
+           <?php }?>
            
            <input type="submit" name="actualizar"  value="Actualizar"><br>
         

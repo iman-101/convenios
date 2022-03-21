@@ -25,7 +25,8 @@ class EmpresaController{
     public function show(int $id=0){
         if(!$id)
             throw new Exception("No se indico el empresa .");
-            
+            if(Login::get()->rol !=="cordinador")
+                throw new Exception("No tienes permiso para esta operacion");
             $empresa=Empresa::getById($id);
             
             
@@ -99,7 +100,11 @@ class EmpresaController{
     
     
     public function edit(int $id=0){
+     
         
+        if(Login::get()->rol =="alumno"){
+            throw new Exception("No tienes permiso");
+        }
         if(!$id)
             throw new Exception('No se indico el socio.');
             
@@ -113,17 +118,50 @@ class EmpresaController{
                 
                 include '../view/empresa/actualizar.php';
     }
-    
-    public function update(){
+    public function editpre(int $id=0){
         
+        if(Login::get()->rol =="alumno"){
+            throw new Exception("No tienes permiso");
+        }
+        if(!$id)
+            throw new Exception('No se indico el empresa.');
+            
+            
+            $empresa = Empresa::getById($id);
+            
+            if(!$empresa)
+                throw new Exception("No existe el empresa $id");
+                
+                
+                
+                include '../view/empresa/preferencia.php';
+    }
+    public function update(){
         if(empty($_POST['actualizar']))
-            throw new Exception('No se recibieron datos .');
-            $empresa =Empresa::getById(intval($_POST['id'])); 
-            var_dump($empresa);
+            throw new Exception('No se recibieron datos .'); 
+        
+        if(Login::get()->rol =="alumno")
+            throw new Exception("No tiene permiso");
+        
+        $empresa =Empresa::getById(intval($_POST['id']));
+    
+            if(count($_POST)== 3){
+                
+                $empresa->preferencias =$_POST['preferencias'];
+              
+                if(!$empresa->actualizarpre($empresa->preferencias ))
+                    
+                    throw  new Exception("No se pudo actualizar $empresa->id");
+                    
+                $GLOBALS['mensaje'] ="Actualizar del $empresa->id correcta.";
+                
+                $this->editpre($empresa->id);
+            }else{
+           
             $empresa->nombre =$_POST['nombre'];
             $empresa->cif =$_POST['cif'];
             $empresa->qbid =$_POST['qbid'];
-            
+            $empresa->preferencias =$_POST['preferencias'];
             $empresa->telefonocontacto =$_POST['telefonocontacto'];
             $empresa->nombrecontacto =$_POST['nombrecontacto'];
             $empresa->web = $_POST['web'];
@@ -131,15 +169,15 @@ class EmpresaController{
             $empresa->valoracion = $_POST['valoracion'];
             
             
-          
-            
             if(!$empresa->actualizar())
                 
-                throw  new Exception("No se pudo actualizar $empresa->id");
+                throw  new Exception("No se pudo actualizar empresa  $empresa->id");
                 
-                $GLOBALS['mensaje'] ="Actualizar del $empresa->id correcta.";
+                $GLOBALS['mensaje'] ="Actualizar empresa con  $empresa->id correcta.";
                 
                 $this->edit($empresa->id);
+          
+            }
     }
     
     

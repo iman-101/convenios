@@ -9,4 +9,13 @@ class Empresa extends  Model{
         return DB::selectAll($consulta,'Convenio');
     }
     
+    
+    public function actualizarpre(string $pre){
+        
+        $consulta="UPDATE empresas SET preferencias='$pre' WHERE id=$this->id";
+     
+        
+        return DB::update($consulta);
+    }
+    
 }

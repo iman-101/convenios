@@ -3,7 +3,7 @@ class ForgotpasswordController{
     
     public function index(){
         
-        include 'view/recuperarclave.php';
+        include '../view/recuperarclave.php';
     }
     
     public function send(){

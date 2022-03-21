@@ -124,6 +124,7 @@ class ConvenioController{
                 
                 $GLOBALS['mensaje']="Borrado correctamente";
                 
+                $convenios=Convenio::get();
                 include '../view/convenio/lista.php';
                 
                 

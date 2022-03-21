@@ -27,7 +27,53 @@
     ?>
     <div class="container">
    
-          <p>hola <?=Login::get()->displayname?></p>  
+          <h2>hola <?=Login::get()->displayname?></h2>  
+    
+
+<?php  if(!empty($convenios)){?>
+    <table border='1' class="table table-striped">
+         <thead >
+              <tr>
+              <th scope="col">ID</th>
+                 <th scope="col">Idalumno</th>
+                 <th scope="col">Inicio</th>
+                 <th scope="col">Fin</th>
+                 <th scope="col">Horario</th>
+                   <th scope="col">Estado</th>
+                 <th scope="col">Duracion</th>
+            
+               
+              </tr>
+       </thead>
+       </tbody>
+  <?php 
+  
+ 
+ 
+  
+          
+       foreach($convenios as $e){
+     
+          echo "<tr>";
+          
+          echo " <td>$e->id</td>";
+          echo " <td>$e->idalumno</td>";
+          echo " <td>$e->inicio</td>";
+          echo " <td>$e->fin</td>";
+          echo " <td>$e->horario</td>";
+          echo " <td>$e->estado</td>";
+          echo " <td>$e->horario</td>";
+          echo " <td>$e->duracion</td>";
+          
+       }
+       
+    }else{
+        echo "No tiene convenios.";
+    }
+    
+    
+  
+  ?>
 </div>
   </body>
   </html> 

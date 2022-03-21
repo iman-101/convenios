@@ -23,28 +23,31 @@ class UsuarioController{
        
             switch(Login::get()->rol){
                 case"empresa":
-                    
-                    $empresa= new Empresa();
+                  
+                  
+                    $empresa= Empresa::getById(Login::get()->id);
                     $empresa->getConvenios(Login::get()->id);
                     
                     include '../view/empresa/home.php';
                     break;
                 case "alumno":
-                    $alumno= new Empresa();
+               
+                    $alumno=Alumno::getById(Login::get()->id);
                     $alumno->getConvenios(Login::get()->id);
                     include '../view/alumno/home.php';
                     break;
                     
                     
                 case "cordinador":
-                    
+                  
+                    $cordinador=Usuario::getById(Login::get()->id);
+                    $convenios=Convenio::get();
                     include '../view/cordinador/home.php';
                     break;
                 default: 
                     throw new Exception("Acceso no permitido");
             }
-        
-        
+       
     }
     public function  show(int $id=0){
         

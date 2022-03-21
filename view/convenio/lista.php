@@ -89,11 +89,11 @@
    
           <?php if(!empty($GLOBALS['mensaje'])){?>
      
-         <div class="alert alert-danger"> 
+         <div class="alert alert-success"> 
          
            <h2 class='exito'><?=$GLOBALS['mensaje']?></h2>
          </div>
-         <?php }else{?>
+         <?php }?>
 
  <?php  if(!empty($convenios) ){
  ?>
@@ -146,12 +146,9 @@
       ?>
       </tbody>
  </table>
- <?php }else{
-     echo "<h2>No se encuentra convenios</h2>";
-     
- }
+ <?php }
  
-             }?>
+             ?>
 </div>
   </body>
   </html> 

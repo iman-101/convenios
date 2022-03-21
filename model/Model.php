@@ -84,7 +84,7 @@ class Model{
             $consulta = "SELECT * FROM $tabla
              WHERE $campo LIKE '%$valor%' ORDER BY $orden $sentido";
             
-            echo $consulta;
+           
             return DB::selectAll($consulta, get_called_class());
             
     }

@@ -31,7 +31,7 @@
          
          <div class="alert alert-success"> 
            <h2>Exito en la operacion solicitada</h2>
-           <p class='exito'><?=$mensaje?></p>
+           <p class='exito'><?=$GLOBALS['mensaje']?></p>
          </div>
            <?php 
          (TEMPLATE)::footer();

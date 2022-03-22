@@ -15,5 +15,12 @@ class Usuario extends model{
     
     
     
+    public static  function getByUserMail(string $u,string $e):?Usuario{
+        
+        $consulta="SELECT * FROM usuarios WHERE displayname='$u' AND email='$e'";
+        
+        return DB::select($consulta,self::class);
+    }
+    
    
 }

@@ -22,8 +22,10 @@
 </head>
 <body>
     <?php 
-    (TEMPLATE)::login();
-    (TEMPLATE)::nav("../");
+    if(Login::get()){
+     echo (TEMPLATE)::login();
+     echo (TEMPLATE)::nav("../");
+    }
     ?>
     <div class="container">
         <h1 class="ws-2 text-info">EXITO</h1>

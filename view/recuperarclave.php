@@ -31,18 +31,30 @@
      
        <div  class="container">
       
-         <h2>Recuperar clave</h2>   
-     <form method="post" action="/forgotpassword/send">
-         <label>Usuario</label>
-         <input type="text" name="usuario" required>
-         <br>
-         <label>Email</label>
-         <input type="email" name="email" required>
-         <input type="submit" name="generar" value="Generar nueva clave">
-     </form>
+         
+   
     
 
-       
+         <form method="post" action="/forgotpassword/send" class="form_login">
+             <div class="mb-3 mt-3">
+               <h2>Recuperar clave</h2> 
+               <label for="email" class="form-label">email:</label>
+               <input type="text" class="form-control" name="email" required>
+              </div>
+               <div class="mb-3">
+                  <label for="pwd" class="form-label">Displayname:</label>
+                  <input type="text" class="form-control"   name="displayname" required>
+                </div>
+        
+          
+          
+            <input type="submit" name="enviar"  class="btn btn-primary" value="Enviar">
+              <?php  if(!empty($Globals['mensaje'])) 
+                echo  "  <p class='text-danger'>".$Globals['mensaje']."</p>";
+               
+              
+          ?>
+        </form>
        
     </div> 
     

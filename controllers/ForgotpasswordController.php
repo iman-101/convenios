@@ -7,33 +7,33 @@ class ForgotpasswordController{
     }
     
     public function send(){
-        if(empty($_POST['generar']))
+        if(empty($_POST['enviar']))
             throw new Exception('No se recibio el formulario.');
        
-        $u =$_POST['usuario'];
+        $u =$_POST['displayname'];
         $e =$_POST['email'];
         
         $usuario = Usuario::getByUserMail($u, $e);
         
-        if(!$usuario)
-            throw new Exception("Los datos no soc correctos.");
+      /*  if(!$usuario)
+            throw new Exception("Los datos no soc correctos.");*/
         $nuevaClave = uniqid();
         
-        $usuario->clave =md5($nuevaClave);
+        $usuario->password =$nuevaClave;
         
-        if($usuario->actualizar())
-            throw new Exception("No se pudo generar una nueva clave");
+       $usuario->actualizar();
+         
         
        $to = $usuario->email;
-       $from ="mailrecovery@biblioteca.cat";
+       $from ="saidaelmalqi@gmail.com";
        $name = "Sistema de generacion de claves";
        $subject ="Nueva clave de la aplication biblioteca";  
        $message="Se ha generado una nueva clave: <b>$nuevaClave</b>";
        
        $mail = new Email($to,$from,$name,$subject,$message );
        
-       $mensaje = "Procedimiento completo , consulta tu bandeja de entrada.";
-       include 'view/exito.php';
+       $GLOBALS['mensaje'] = "Procedimiento completo , consulta tu bandeja de entrada.";
+       include '../view/exito.php';
     }
     
    

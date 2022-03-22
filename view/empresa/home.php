@@ -18,7 +18,7 @@
 <script type="text/javascript" src="../../js/myscript.js"></script>
        
 <script type="text/javascript" src="../js/activeClass.js"></script>  
-<title>Biblioteca</title>
+<title>Convenio</title>
 </head>
 <body>
     <?php 

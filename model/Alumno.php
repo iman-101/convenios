@@ -13,6 +13,12 @@ class Alumno extends Model{
     }
     
   
-    
+    public function actualizarpre(string $pre){
+        
+        $consulta="UPDATE alumnos SET preferencias='$pre' WHERE id=$this->id";
+        
+        
+        return DB::update($consulta);
+    }
  
 }

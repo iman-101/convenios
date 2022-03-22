@@ -28,17 +28,22 @@
    <div class="container">
         <h2>Formulario de edition</h2>
         
-        
-        <?=empty($GLOBALS['mensaje'])? "" : "<p>".$GLOBALS['mensaje']."</p>"?>
+          <?php if(!empty($GLOBALS['mensaje'])){?>
+     
+         <div class="alert alert-success"> 
+           <h2>Exito en la operacion solicitada</h2>
+           <p class='exito'><?=$GLOBALS['mensaje']?></p>
+         </div>
+         <?php }?>
         
         
         
         <form method="POST" action="/alumno/update" >
            
            <input type="hidden" name="id" value="<?=$alumno->id?>">
-           <label>Preferencias:</label>
-           <input type="text" name="preferencias" value="<?=$alumno->preferencias?>">
-              
+           <label>Preferencias:</label><br>
+           <textarea name="preferencias" ><?=$alumno->preferencias?></textarea> <br>
+               <input type="submit" name="actualizar"  value="Actualizar"><br>
         </form>
        
    </div>

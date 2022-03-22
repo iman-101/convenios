@@ -43,7 +43,7 @@
                  <th scope="col">horario</th>
                   <th scope="col">duracion</th>
                  <th scope="col">destalles</th>
-                  <th scope="col">Actualizar</th>
+                 
               </tr>
        </thead>
        </tbody>
@@ -65,15 +65,9 @@
             echo "<td>$al->horario</td>";
             echo "<td>$al->duracion</td>";
             echo "<td>$al->detalles</td>";
-            echo "<td><a href='/convenio/show/$al->id'>Ver</a></td>";
-            if(Login::get()->rol =="cordinador"){
-                
+          
          
-            echo "<td><a href='/convenio/edit/$al->id'>Actualizar</a></td>";
-            echo "<td><a href='/convenio/delete/$al->id'>Eliminar</a></td>";
-            }
-         
-            echo "</td>";
+       
             echo "</tr>";
         }
      

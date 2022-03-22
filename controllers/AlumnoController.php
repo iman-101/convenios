@@ -19,6 +19,20 @@ class AlumnoController{
         include '../view/alumno/lista.php';
     }
     
+    public function ver(int $id=0){
+        if(!$id)
+            throw new Exception("No se indicó el alumno .");
+        if(Login::get()->id !=$id)
+                throw new Exception("No tienes permiso para esta operacion");
+        
+        $alumno=Alumno::getById(Login::get()->id);
+        
+        
+        $convenios=$alumno->getConvenios(Login::get()->id);
+        
+        include '../view/alumno/verconvenios.php';
+        
+    }
     
     public function show(int $id=0){
         if(Login::get()->rol !=="cordinador")
@@ -101,16 +115,19 @@ class AlumnoController{
     
     
     public function edit(int $id=0){
+        if(!$id)
+            throw new Exception('No se indico el alumno.');
         
-        if(Login::get()->id !=$id && Login::get()->rol !="cordinador"){
+            $alumno = Alumno::getById($id);
+            
+        if(Login::get()->rol !="cordinador"){
             throw new Exception("No tienes permiso");
         }
         
-        if(!$id)
-            throw new Exception('No se indico el alumno.');
+   
             
             
-            $alumno = Alumno::getById($id);
+           
             
         if(!$alumno)
                 throw new Exception("No existe el alumno $id");
@@ -118,6 +135,27 @@ class AlumnoController{
                 
                 
          include '../view/alumno/actualizar.php';
+    }
+    
+    public function editpre(int $id=0){
+        if(!$id)
+            throw new Exception('No se indico el alumno.');
+            $alumno = Alumno::getById($id);
+            
+        if(Login::get()->id !=$id && Login::get()->rol !="cordinador"){
+            throw new Exception("No tienes permiso");
+        }
+     
+            
+            
+         
+            
+            if(!$alumno)
+                throw new Exception("No existe el alumno $id");
+                
+                
+                
+                include '../view/alumno/preferencia.php';
     }
     
     public function update(){
@@ -135,8 +173,9 @@ class AlumnoController{
                 throw new Exception('No existe el libro.');
             
                 if(Login::get()->rol !=="cordinador"){
-                    if(Login::get()->id !=$alumno->id){
-                        
+                    
+                    if(Login::get()->id == $alumno->id){
+                      
                         $alumno->preferencias =$_POST['preferencias'];
                         
                         
@@ -146,8 +185,9 @@ class AlumnoController{
                         
                             $GLOBALS['mensaje'] ="Actualizar del alumno $alumno->nombre correcta.";
                             
-                            $this->edit($alumno->id);
+                            $this->editpre($alumno->id);
                     }else{
+                       
                         throw  new Exception("No tienes permiso");
                     }
                 }else{

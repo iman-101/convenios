@@ -4,7 +4,7 @@ class ContactoController{
     
     
     public function index(){
-        include 'view/contacto.php';
+        include '../view/contacto.php';
     }
     
     
@@ -13,13 +13,15 @@ class ContactoController{
         if(empty($_POST['enviar']))
           
             throw  new Exception('No se recibio el formulario de contacto');
+        
+    /*        
        $reCaptcha = new ReCaptcha('6Ldm4YseAAAAAFFkLuC9StawniDtLqjxzi0My36Q');
        
        $response = $reCaptcha->verifyResponse(
            $_SERVER['REMOTE_ADDR'],$_POST['g-recaptcha-response'] );
        if(!$response || !$response->success)
            throw  new Exception('Error al validar reCapcha');
-     
+     **/
            
        $to=CONTACT_EMAIL;
        $from=$_POST['email'];
@@ -30,10 +32,10 @@ class ContactoController{
        $email=new Email($to,$from,$name, $subject,$message);
        
        if(!$email->enviar())
-         throw  new Exception('No se pudo enviar el email de contacto');
+           $GLOBALS['mensaje']="Error , mensaje no ha enviado" ;  
        
-      $mensage="Mensaje enviado en breve recibiras una respuesto" ;  
-         include 'view/exito.php';
+     $GLOBALS['mensaje']="Mensaje enviado en breve recibiras una respuesto" ;  
+         include '../view/contacto.php';
     }
     
 }

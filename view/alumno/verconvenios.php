@@ -1,4 +1,4 @@
-<!doctype html>
+   <!doctype html>
 <html lang="en">
 <head>
 <!-- Required meta tags -->
@@ -18,32 +18,20 @@
 <script type="text/javascript" src="../../js/myscript.js"></script>
        
 <script type="text/javascript" src="../js/activeClass.js"></script>  
-<title>Convenio</title>
+<title>Biblioteca</title>
 </head>
 <body>
     <?php 
     (TEMPLATE)::login();
     (TEMPLATE)::nav("../../");
     ?>
-    <div class="container">
-       
-        <h1>Bienvenido <?=Login::get()->displayname?></h1>  
-     
-<p><b>Nombre: </b><?=$empresa->nombrecontacto?></p>
-<p><b>telefono: </b><?=$empresa->telefonocontacto?></p>
-<p><b>Web: </b><?=$empresa->web?></p>
-<p><b>Perfil: </b><?=$empresa->perfil?></p>
-<p><b>Valoracion: </b><?=$empresa->valoracion?></p>
-
-
-<h2>Convenios</h2>
-<?php  if(!empty($convenios)){?>
-    <table border='1' class="table table-striped">
+    <div class="container">  
+     <?php  if(!empty($convenios)){?>
+   <table border='1' class="table table-striped">
          <thead >
               <tr>
               <th scope="col">ID</th>
                  <th scope="col">Idalumno</th>
-                   <th scope="col">Idempresa</th>
                  <th scope="col">Inicio</th>
                  <th scope="col">Fin</th>
                  <th scope="col">Horario</th>
@@ -66,7 +54,6 @@
           
           echo " <td>$e->id</td>";
           echo " <td>$e->idalumno</td>";
-          echo " <td>$e->idempresa</td>";
           echo " <td>$e->inicio</td>";
           echo " <td>$e->fin</td>";
           echo " <td>$e->horario</td>";
@@ -76,15 +63,12 @@
           
        }
        
-    }else{
+       }else{
         echo "No tiene convenios.";
     }
-    
-    
-  
-  ?>
-  </tbody>
-</table>
+             ?>
+      </tbody>
+ </table>
 
 </div>
   </body>

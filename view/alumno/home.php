@@ -28,7 +28,11 @@
     <div class="container">
    
           <h2>hola <?=Login::get()->displayname?></h2>  
-    
+    <p><b>Id: </b><?=$alumno->id?></p>
+<p><b>Nombre: </b><?=$alumno->nombre?></p>
+<p><b>Apellidos: </b><?=$alumno->apellidos?></p>
+<p><b>Poblacion: </b><?=$alumno->poblacion?></p>
+
 
 <?php  if(!empty($convenios)){?>
     <table border='1' class="table table-striped">

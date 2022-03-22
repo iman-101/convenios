@@ -8,24 +8,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 <!--font awsome-->
-<link rel="stylesheet" type="text/css" href="mypro/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/mypro/css/all.min.css">
 <!--jquery-->
-<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="/js/jquery.js"></script>
 <!--bootstrap js-->
-<script src="js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 <!--my style-->
-<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css">
 
-<script src="https://www.google.com/recaptcha/api.js"></script>
-<script type="text/javascript" src="js/activeClass.js"></script>  
+
+<script type="text/javascript" src="/js/activeClass.js"></script>  
 <title>Biblioteca</title>
 </head>
 <body>
     <?php 
     (TEMPLATE)::login();
-    (TEMPLATE)::nav("");
+    (TEMPLATE)::nav("/");
     ?>
    <div class="container text-center">
         <h2 class="text-center m-4">Contactar</h2>
@@ -47,15 +47,19 @@
                         <label class="form-label">Asunto</label>
                         <input type="text" name="asunto"  class="form-control" required>
                     </div>
-                     <div class="mb-3">
-                        <div class="g-recaptcha"  data-sitekey="6Ldm4YseAAAAAKyTY4lrh1sE9mYbeGQG-RmxYGt-">
-                    </div>
+                   
                     <div class="mb-3">
                         <textarea name="mensaje"  class="form-control" required></textarea>
                     </div>
                      
                      <input type="submit" name="enviar" value="Enviar" class="btn btn-primary" >
-                     <br>
+                          <?php if(!empty($GLOBALS['mensaje'])){?>
+     
+         <div class="alert alert-success"> 
+           <h2>Exito en la operacion solicitada</h2>
+           <p class='exito'><?=$GLOBALS['mensaje']?></p>
+         </div>
+         <?php }?>
               </form>
             </div>
         </div>

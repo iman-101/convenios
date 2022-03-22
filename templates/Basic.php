@@ -55,15 +55,19 @@ class Basic{
 		             <ul class="navbar-nav ms-auto myDiv" >
 		             
 		                <?php if( Login::get() && Login::get()->rol =="alumno" ){?>
-		               <li class="nav-item"><a href="/convenio" class="nav-link">Ver convenios</a></li>
-		               <li class="nav-item"><a href="/alumno/edit/<?=Login::get()->id?>" class="nav-link">Editar preferencias</a></li>
+		                <li class="nav-item"><a href="/usuario/home" class="nav-link">Home</a></li>
+		               <li class="nav-item"><a href="/alumno/ver/<?=Login::get()->id?>" class="nav-link">Ver convenios</a></li>
+		               <li class="nav-item"><a href="/alumno/editpre/<?=Login::get()->id?>" class="nav-link">Editar preferencias</a></li>
+		                   <li class="nav-item"><a href="/contacto/" class="nav-link">Notificar error</a></li>
 		               <?php 
    }else if(Login::get() &&  Login::get()->rol =="empresa"){?>
+                             <li class="nav-item"><a href="/usuario/home" class="nav-link">Home</a></li>
                             <li class="nav-item"><a href="/convenio" class="nav-link">Ver convenios</a></li>
 		                    <li class="nav-item"><a href="/empresa/editpre/<?=Login::get()->id?>" class="nav-link">Editar mis preferencias</a></li>
                             <li class="nav-item"><a href="/empresa/edit/<?=Login::get()->id?>" class="nav-link">modificar mis datos</a></li>
+                               <li class="nav-item"><a href="/contacto/" class="nav-link">Notificar error</a></li>
                           <?php }else if(Login::get() &&  Login::get()->rol=="cordinador"){ ?>
-                          
+                             <li class="nav-item"><a href="/usuario/home" class="nav-link">Home</a></li>
                               <li class="nav-item"><a href="/alumno/list" class="nav-link">Ver alumnos</a></li>
                               <li class="nav-item"><a href="/empresa" class="nav-link">Ver empresas</a></li>
                               <li class="nav-item"><a href="/alumno/create" class="nav-link">Nuevo alumno</a></li>
@@ -71,7 +75,7 @@ class Basic{
                                <li class="nav-item"><a href="/cordinador/create" class="nav-link">Nuevo cordinador</a></li> 
                           <li class="nav-item"><a href="/convenio/create" class="nav-link">Nuevo convenio</a></li>
                               <li class="nav-item"><a href="/convenio" class="nav-link">Ver convenios</a></li>
-                        
+                           <li class="nav-item"><a href="/contacto/" class="nav-link">Notificar error</a></li>
                          <?php  }else{
                              echo "";
                          }

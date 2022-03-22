@@ -45,7 +45,7 @@
            <input type="text" name="nombre" value="<?=$empresa->nombre?>"><br>
            
            <label>Cif:</label>
-           <input type="text" name="cif" value="<?=$empresa->cif?>"><br>
+           <input type="text" name="cif" value="<?=$empresa->cif?>" maxlength="9"><br>
                
                  
             <label>Nombre Contacto:</label>

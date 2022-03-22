@@ -100,16 +100,17 @@ class EmpresaController{
     
     
     public function edit(int $id=0){
-     
         
-        if(Login::get()->rol =="alumno"){
-            throw new Exception("No tienes permiso");
-        }
         if(!$id)
             throw new Exception('No se indico el socio.');
             
             
             $empresa = Empresa::getById($id);
+        
+        if(Login::get()->id !=$empresa->id){
+            throw new Exception("No tienes permiso");
+        }
+   
             
             if(!$empresa)
                 throw new Exception("No existe el empresa $id");
@@ -119,15 +120,15 @@ class EmpresaController{
                 include '../view/empresa/actualizar.php';
     }
     public function editpre(int $id=0){
-        
-        if(Login::get()->rol =="alumno"){
-            throw new Exception("No tienes permiso");
-        }
         if(!$id)
             throw new Exception('No se indico el empresa.');
             
             
             $empresa = Empresa::getById($id);
+        if(Login::get()->id !=$empresa->id){
+            throw new Exception("No tienes permiso");
+        }
+       
             
             if(!$empresa)
                 throw new Exception("No existe el empresa $id");
@@ -140,16 +141,16 @@ class EmpresaController{
         if(empty($_POST['actualizar']))
             throw new Exception('No se recibieron datos .'); 
             $id=   intval($_POST['id']);
-          
-        if((Login::get()->rol !=="empresa" && Login::get()->rol!=="cordinador"))
+            $empresa =Empresa::getById($id);
+            if((Login::get()->id != $empresa->id && Login::get()->rol!=="cordinador"))
                throw new Exception("No tiene permiso");
             
             
-        $empresa =Empresa::getById($id);
+
     
             if(count($_POST)== 3){
                
-                if(Login::get()->id != $id) 
+                if(Login::get()->id !=$empresa->id) 
                     throw new Exception("No tiene permiso");
                 
                 $empresa->preferencias =$_POST['preferencias'];

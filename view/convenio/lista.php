@@ -60,7 +60,7 @@
               <select name="orden">
                  <option value="id" <?=!empty($orden) && $orden=='id'? ' selected ' :'';?>>
                   
-                  Nombre</option>
+                  Id</option>
                 
                   
                   <option value="idalumno" <?=!empty($orden) && $orden=='idalumno'? ' selected ' :'';?>>

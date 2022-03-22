@@ -68,10 +68,10 @@
            
                <label>Si</label>
                
-                     <input type="radio" name="qbid"   value="1"      <?=empty($qbid) || $qbid=='1'? ' checked ' :'';?>> 
+                     <input type="radio" name="qbid"   value="1"      <?= $empresa->qbid==1 ? ' checked ' :'';?>> 
                     
                       <label>No</label>    
-                         <input type="radio" name="qbid" value="0"   <?=!empty($qbid) && $qbid=='0'? ' checked ' :'';?>><br>
+                         <input type="radio" name="qbid" value="0"   <?= $empresa->qbid==0 ? ' checked ' :'';?>><br>
     
              
              

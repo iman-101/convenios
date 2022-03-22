@@ -67,10 +67,15 @@
            <label>qbid:</label>
            
                <label>Si</label>
-                       <input type="radio" name="qbid"   
-                        <?=empty($sentido)? ' checked ' :'';?>   value="<?=$empresa->qbid?>">
+               
+                     <input type="radio" name="qbid"   value="1"      <?=empty($qbid) || $qbid=='1'? ' checked ' :'';?>> 
+                    
                       <label>No</label>    
-                         <input type="radio" name="qbid" value="<?=$empresa->qbid?>" ><br>
+                         <input type="radio" name="qbid" value="0"   <?=!empty($qbid) && $qbid=='0'? ' checked ' :'';?>><br>
+    
+             
+             
+             
             <label>Valoracion:</label>
            <input type="text" name="valoracion" value="<?=$empresa->valoracion?>"><br>
         

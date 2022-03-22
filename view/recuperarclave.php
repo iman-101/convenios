@@ -49,14 +49,16 @@
           
           
             <input type="submit" name="enviar"  class="btn btn-primary" value="Enviar">
-              <?php  if(!empty($Globals['mensaje'])) 
-                echo  "  <p class='text-danger'>".$Globals['mensaje']."</p>";
-               
-              
-          ?>
-        </form>
+               <a href="/">Identificarse</a>
+               <?php  if(!empty( $GLOBALS['mensaje'])) 
+                   echo  "  <p class='text-danger'>". $GLOBALS['mensaje']."</p>";
+                   if(!empty( $GLOBALS['recuperado']))
+                       echo  "  <p class='text-success'>". $GLOBALS['recuperado']."</p>";
+                 
+              ?>
+          </form>
        
-    </div> 
+       </div> 
     
     </body>
 </html>

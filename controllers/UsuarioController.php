@@ -26,14 +26,14 @@ class UsuarioController{
                   
                   
                     $empresa= Empresa::getById(Login::get()->id);
-                    $empresa->getConvenios(Login::get()->id);
+                    $convenios=$empresa->getConvenios(Login::get()->id);
                     
                     include '../view/empresa/home.php';
                     break;
                 case "alumno":
                
                     $alumno=Alumno::getById(Login::get()->id);
-                    $alumno->getConvenios(Login::get()->id);
+                    $convenios=$alumno->getConvenios(Login::get()->id);
                     include '../view/alumno/home.php';
                     break;
                     

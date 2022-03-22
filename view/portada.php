@@ -42,9 +42,10 @@
                   <input type="password" class="form-control"   name="password" required>
                 </div>
         
-              <a href="/Forgotpassword/index">Recuperar clave</a>
+             
           
             <input type="submit" name="identificar"  class="btn btn-primary" value="Idenficarse">
+             <a href="/Forgotpassword/index">Recuperar clave</a>
               <?php  if(!empty($Globals['mensaje'])) 
                 echo  "  <p class='text-danger'>".$Globals['mensaje']."</p>";
                

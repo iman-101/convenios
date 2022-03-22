@@ -18,7 +18,7 @@
 <link rel="stylesheet" type="text/css" href="../../css/style.css">
 <script type="text/javascript" src="../../js/myscript.js"></script>
 
-<title>Biblioteca</title>
+<title>Convenio</title>
 </head>
 <body>
     <?php 
@@ -35,31 +35,12 @@
         
         <form method="POST" action="/alumno/update" >
            
-           
            <input type="hidden" name="id" value="<?=$alumno->id?>">
-           <label>Nombre:</label>
-           <input type="text" name="nombre" value="<?=$alumno->nombre?>"><br>
-           
-           <label>Apellidos:</label>
-           <input type="text" name="apellidos" value="<?=$alumno->apellidos?>"><br>
-               
-                 
-            <label>Poblacion:</label>
-           <input type="text" name="poblacion" value="<?=$alumno->poblacion?>"><br>
-           
-           
            <label>Preferencias:</label>
-           <input type="text" name="preferencias" value="<?=$alumno->preferencias?>"><br>
-       <label>Perfil:</label>
-           <input type="text" name="perfil" value="<?=$alumno->perfil?>"><br>
-         
-
-           
-           <input type="submit" name="actualizar"  value="Actualizar"><br>
-        
+           <input type="text" name="preferencias" value="<?=$alumno->preferencias?>">
+              
         </form>
-        <a href="/alumno/show/<?=$alumno->id?>">Detalles</a>
-        <a href="/alumno/list">Volver al listado</a>
+       
    </div>
 </body>
 </html>

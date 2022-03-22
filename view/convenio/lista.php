@@ -63,17 +63,17 @@
                   Nombre</option>
                 
                   
-                  <option value="idalumno" <?=!empty($orden) && $orden=='id'? ' selected ' :'';?>>
+                  <option value="idalumno" <?=!empty($orden) && $orden=='idalumno'? ' selected ' :'';?>>
                   
                   idalumno</option>
                    
-                  <option value="idempresa" <?=!empty($orden) && $orden=='cif'? ' selected ' :'';?>>
+                  <option value="idempresa" <?=!empty($orden) && $orden=='idempresa'? ' selected ' :'';?>>
                   
                   Idempresa</option>
                       
                   <option value="inicio" <?=!empty($orden) && $orden=='inicio'? ' selected ' :'';?>>
                   
-                  Idempresa</option>
+                  Inicio</option>
               </select>
               <input type="radio" name="sentido" value="ASC"  
              <?=empty($sentido) || $sentido=='ASC'? ' checked ' :'';?>>

@@ -27,17 +27,15 @@
     ?>
     <div class="container">
        
-        <p>hola <?=Login::get()->displayname?></p>  
+        <h1>Bienvenido <?=Login::get()->displayname?></h1>  
      
 <p><b>Nombre: </b><?=$empresa->nombrecontacto?></p>
 <p><b>telefono: </b><?=$empresa->telefonocontacto?></p>
 <p><b>Web: </b><?=$empresa->web?></p>
 <p><b>Perfil: </b><?=$empresa->perfil?></p>
 <p><b>Valoracion: </b><?=$empresa->valoracion?></p>
- <a href='/empresa/edit/<?=$empresa->id?>'>Editar</a>
- <a href='/empresa/delete/<?=$empresa->id?>'>Eliminar</a>;
- <a href='/empresa/create/<?=$empresa->id?>'>Nuevo convenio</a>;
- <?php if(empty($GLOBALS['mensaje'])){?>
+
+
 <h2>Convenios</h2>
 <?php  if(!empty($convenios)){?>
     <table border='1' class="table table-striped">
@@ -85,7 +83,7 @@
   ?>
   </tbody>
 </table>
- <?php }?>
+
 </div>
   </body>
   </html> 

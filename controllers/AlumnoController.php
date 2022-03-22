@@ -102,7 +102,7 @@ class AlumnoController{
     
     public function edit(int $id=0){
         
-        if(Login::get()->rol =="empresa"){
+        if(Login::get()->id !=$id && Login::get()->rol !="cordinador"){
             throw new Exception("No tienes permiso");
         }
         
@@ -124,25 +124,25 @@ class AlumnoController{
         
         if(empty($_POST['actualizar']))
             throw new Exception('No se recibieron datos .'); 
-        
-        if(Login::get()->rol =="empresa"){
-            throw new Exception("No tienes permiso");
-        }
+            
+        $alumno =Alumno::getById(intval($_POST['id'])); 
+            if(Login::get()->id !=$alumno->id && Login::get()->rol !="cordinador"){
+                throw new Exception("No tienes permiso");
+            }
          
-            $alumno =Alumno::getById(intval($_POST['id'])); 
             
             if(!$alumno)
                 throw new Exception('No existe el libro.');
             
                 if(Login::get()->rol !=="cordinador"){
-                    if(Login::get()->rol == "alumno"){
+                    if(Login::get()->id !=$alumno->id){
                         
                         $alumno->preferencias =$_POST['preferencias'];
                         
                         
-                        if($alumno->actualizar() === false)
-                            
-                            throw  new Exception("No se pudo actualizar $alumno->nombre");
+                  
+                            $alumno->actualizar();
+                     
                         
                             $GLOBALS['mensaje'] ="Actualizar del alumno $alumno->nombre correcta.";
                             
@@ -161,9 +161,9 @@ class AlumnoController{
        
        
         
-        if($alumno->actualizar() === false)
+        $alumno->actualizar();
             
-            throw  new Exception("No se pudo actualizar $alumno->nombre");
+         
         
        $GLOBALS['mensaje'] ="Actualizar del alumno $alumno->nombre correcta.";
        

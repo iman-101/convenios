@@ -17,5 +17,5 @@ class Empresa extends  Model{
         
         return DB::update($consulta);
     }
-    
+
 }

@@ -84,7 +84,16 @@ class Model{
             $consulta = "SELECT * FROM $tabla
              WHERE $campo LIKE '%$valor%' ORDER BY $orden $sentido";
             
-           
+            if($campo=='id'){
+                if(!is_numeric( $valor)){
+                    $consulta = "SELECT * FROM $tabla
+             WHERE $campo LIKE '%$valor%' ORDER BY $orden $sentido";
+                }else{
+                $consulta = "SELECT * FROM $tabla
+             WHERE $campo = $valor ORDER BY $orden $sentido";
+            }
+            }
+         
             return DB::selectAll($consulta, get_called_class());
             
     }

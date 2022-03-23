@@ -32,14 +32,29 @@ class EmpresaController{
             
             if(!$empresa)
                 throw new Exception("No se ha encontrado el socio $id .");
-                $emp=new Empresa();
-               $convenios =$emp->getconvenios($id);
-               
-                include '../view/empresa/detalles.php';
+        $emp=new Empresa();
+        $convenios =$emp->getconvenios($id);
+       
+        include '../view/empresa/detalles.php';
                 
     }
     
-    
+    public function ver(int $id=0){
+        if(!$id)
+            throw new Exception("No se indicó el alumno .");
+            
+       $empresa=Empresa::getById(Login::get()->id);
+       
+        if(Login::get()->id !=$id)
+            throw new Exception("No tienes permiso para esta operacion");
+            
+            
+            
+            $convenios=$empresa->getConvenios(Login::get()->id);
+            
+            include '../view/empresa/verconvenios.php';
+                
+    }
     public function create(){
         if(Login::get()->rol !=="cordinador")
             throw new Exception("No tienes permiso para esta operacion");
@@ -241,8 +256,12 @@ class EmpresaController{
         $valor=$_POST['valor'];
         $orden=$_POST['orden'];
         $sentido =empty($_POST['sentido'])? 'ASC' : $_POST['sentido'];
+        echo $campo;
+ 
         
-        $empresas =Empresa::getFiltred($campo, $valor, $orden, $sentido);
+            $empresas =Empresa::getFiltred($campo, $valor, $orden, $sentido);
+
+        
         
         if(empty($empresas))
             $GLOBALS['mensaje']="no hay resultado";

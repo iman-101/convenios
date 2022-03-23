@@ -7,3 +7,9 @@
     padding: 20px;
     background-color:#C9C8EA69;
  }
+ 
+ 
+ .navbar-light .navbar-nav .nav-link.active,
+  .navbar-light .navbar-nav .show > .nav-link {
+  color: rgba(44, 0, 255, 0.9);
+}

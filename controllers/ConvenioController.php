@@ -33,7 +33,10 @@ class ConvenioController{
     public function show(int $id=0){
         if(!$id)
             throw new Exception("No se indicó el convenio .");
-            
+        
+            if(Login::get()->rol !=="cordinador"){
+                throw  new  Exception("No tienes permiso");
+            }
             $convenio=Convenio::getById($id);
             
             

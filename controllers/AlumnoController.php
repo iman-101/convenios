@@ -140,7 +140,7 @@ class AlumnoController{
     public function editpre(int $id=0){
         if(!$id)
             throw new Exception('No se indico el alumno.');
-            $alumno = Alumno::getById($id);
+         $alumno = Alumno::getById($id);
             
         if(Login::get()->id !=$id && Login::get()->rol !="cordinador"){
             throw new Exception("No tienes permiso");
@@ -164,6 +164,7 @@ class AlumnoController{
             throw new Exception('No se recibieron datos .'); 
             
         $alumno =Alumno::getById(intval($_POST['id'])); 
+        
             if(Login::get()->id !=$alumno->id && Login::get()->rol !="cordinador"){
                 throw new Exception("No tienes permiso");
             }

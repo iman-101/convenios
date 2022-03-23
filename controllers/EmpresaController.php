@@ -122,7 +122,7 @@ class EmpresaController{
             
             $empresa = Empresa::getById($id);
         
-        if(Login::get()->id !=$empresa->id){
+        if(Login::get()->rol !="cordinador"){
             throw new Exception("No tienes permiso");
         }
    

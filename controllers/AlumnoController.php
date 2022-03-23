@@ -126,9 +126,6 @@ class AlumnoController{
         
    
             
-            
-           
-            
         if(!$alumno)
                 throw new Exception("No existe el alumno $id");
                 
@@ -142,14 +139,11 @@ class AlumnoController{
             throw new Exception('No se indico el alumno.');
          $alumno = Alumno::getById($id);
             
-        if(Login::get()->id !=$id && Login::get()->rol !="cordinador"){
+        if(Login::get()->id !=$alumno->id && Login::get()->rol !="cordinador"){
             throw new Exception("No tienes permiso");
         }
      
-            
-            
-         
-            
+           
             if(!$alumno)
                 throw new Exception("No existe el alumno $id");
                 

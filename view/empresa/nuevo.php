@@ -118,6 +118,15 @@
                         <input type="text" name="valoracion" required>
                      </td>
                 </tr>
+                   <tr>
+                    <td>
+                         <label>Preferencia *</label>
+                    
+                     </td>
+                     <td>
+                        <input type="text" name="preferencia" required>
+                     </td>
+                </tr>
                </table>
                 
                 

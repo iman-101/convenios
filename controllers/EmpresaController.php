@@ -96,7 +96,7 @@ class EmpresaController{
             $empresa->perfil = $_POST['perfil'];
             $empresa->valoracion = $_POST['valoracion'];
             
-            
+            $empresa->preferencias = $_POST['preferencia'];
             
            
             try{

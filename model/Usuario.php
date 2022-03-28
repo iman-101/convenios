@@ -1,5 +1,5 @@
 <?php
-class Usuario extends model{
+class Usuario extends Model{
     
     
     
